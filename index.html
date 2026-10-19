@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>N.Aziz - Kapda Udhar & Khata App</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --secondary: #2563eb;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 16px;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 26px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 18px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .item-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      align-items: center;
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .item-row input[type="text"] {
+      flex: 2;
+    }
+
+    .item-row input[type="number"] {
+      flex: 1.2;
+    }
+
+    .item-row input[type="file"] {
+      flex: 1.5;
+      font-size: 12px;
+    }
+
+    .btn {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .btn-primary { background: var(--secondary); color: white; width: 100%; }
+    .btn-add { background: #e0e7ff; color: var(--secondary); margin-bottom: 12px; width: 100%; }
+    .btn-delete { background: #fee2e2; color: var(--danger); padding: 8px 12px; border-radius: 6px; }
+    .btn-whatsapp { background: #25D366; color: white; display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; padding: 10px 14px; border-radius: 8px; font-weight: 600; width: 100%; margin-top: 10px; }
+
+    .summary-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .order-card {
+      border-left: 5px solid var(--secondary);
+      margin-bottom: 16px;
+      padding: 16px;
+      background: var(--card);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .thumb-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 6px;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    .thumb-card img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #e2e8f0;
+    }
+
+    .badge-baki {
+      color: var(--danger);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>N.Aziz</h1>
+    <p>Dukan Hisab-Kitab & Bill Khata</p>
+  </header>
+
+  <!-- Naya Khata Entry Form -->
+  <section class="card">
+    <h2 style="font-size: 18px; margin-bottom: 14px;">Nayi Entry Jodein</h2>
+
+    <div class="form-group">
+      <label>Customer Ka Naam:</label>
+      <input type="text" id="custName" placeholder="Jaise: Imran Bhai">
+    </div>
+
+    <div class="form-group">
+      <label>WhatsApp Number (10 digit):</label>
+      <input type="tel" id="custPhone" placeholder="Jaise: 9876543210">
+    </div>
+
+    <div class="form-group">
+      <label>Tariq (Date):</label>
+      <input type="date" id="orderDate">
+    </div>
+
+    <label>Kapdo ki List:</label>
+    <div id="itemsContainer"></div>
+
+    <button type="button" class="btn btn-add" onclick="addItemRow()">+ Aur Kapda Jodein</button>
+
+    <div class="form-group">
+      <label>Customer Ne Kitne Rupaye Diye (Paid):</label>
+      <input type="number" id="paidAmount" value="0" oninput="calculateTotal()">
+    </div>
+
+    <div class="summary-box">
+      <div class="summary-row"><span>Kul Raqam (Total Bill):</span> <strong id="totalBillDisplay">₹0</strong></div>
+      <div class="summary-row"><span>Baki Raqam (Balance):</span> <strong id="balanceDisplay" class="badge-baki">₹0</strong></div>
+    </div>
+
+    <button type="button" class="btn btn-primary" onclick="saveRecord()">Khata Me Save Karein</button>
+  </section>
+
+  <!-- Purana Record List -->
+  <h2 style="font-size: 18px; margin-bottom: 12px;">Purane Customers Ka Hisab</h2>
+  <div id="recordsList"></div>
+
+  <script>
+    // Aaj ki date auto-set
+    document.getElementById('orderDate').valueAsDate = new Date();
+
+    let items = [];
+
+    // Pehle se 1 item row add karein
+    window.onload = function() {
+      addItemRow();
+      renderRecords();
+    };
+
+    function addItemRow() {
+      const container = document.getElementById('itemsContainer');
+      const rowId = Date.now();
+
+      const row = document.createElement('div');
+      row.className = 'item-row';
+      row.id = `row-${rowId}`;
+      row.innerHTML = `
+        <input type="text" placeholder="Kapda (e.g. Kurta)" class="item-name" required>
+        <input type="number" placeholder="₹ Rate" class="item-price" oninput="calculateTotal()" required>
+        <input type="file" accept="image/*" class="item-img" capture="environment">
+        <button type="button" class="btn btn-delete" onclick="removeRow('row-${rowId}')">✕</button>
+      `;
+      container.appendChild(row);
+    }
+
+    function removeRow(rowId) {
+      const row = document.getElementById(rowId);
+      if (document.querySelectorAll('.item-row').length > 1) {
+        row.remove();
+        calculateTotal();
+      } else {
+        alert("Kam se kam 1 kapda hona zaroori hai!");
+      }
+    }
+
+    function calculateTotal() {
+      const priceInputs = document.querySelectorAll('.item-price');
+      let total = 0;
+      priceInputs.forEach(input => {
+        total += Number(input.value) || 0;
+      });
+
+      const paid = Number(document.getElementById('paidAmount').value) || 0;
+      const balance = total - paid;
+
+      document.getElementById('totalBillDisplay').innerText = `₹${total}`;
+      document.getElementById('balanceDisplay').innerText = `₹${balance}`;
+      return { total, balance };
+    }
+
+    // Image ko base64 format me badalna taaki save ho sake
+    const fileToBase64 = file => new Promise((resolve, reject) => {
+      if (!file) return resolve("");
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+
+    async function saveRecord() {
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const date = document.getElementById('orderDate').value;
+      const paid = Number(document.getElementById('paidAmount').value) || 0;
+
+      if (!name) {
+        alert("Kripya customer ka naam likhein!");
+        return;
+      }
+
+      const rows = document.querySelectorAll('.item-row');
+      const kapde = [];
+
+      for (const row of rows) {
+        const itemName = row.querySelector('.item-name').value.trim();
+        const itemPrice = Number(row.querySelector('.item-price').value) || 0;
+        const fileInput = row.querySelector('.item-img');
+        const imgFile = fileInput.files[0];
+
+        if (itemName) {
+          const imgBase64 = await fileToBase64(imgFile);
+          kapde.push({
+            name: itemName,
+            price: itemPrice,
+            image: imgBase64
+          });
+        }
+      }
+
+      if (kapde.length === 0) {
+        alert("Kam se kam ek kapde ka naam aur kimat bharein!");
+        return;
+      }
+
+      const { total, balance } = calculateTotal();
+
+      const newRecord = {
+        id: Date.now(),
+        name,
+        phone,
+        date,
+        kapde,
+        total,
+        paid,
+        balance
+      };
+
+      const existingData = JSON.parse(localStorage.getItem('naziz_khata_records') || '[]');
+      existingData.unshift(newRecord);
+      localStorage.setItem('naziz_khata_records', JSON.stringify(existingData));
+
+      // Reset form
+      document.getElementById('custName').value = '';
+      document.getElementById('custPhone').value = '';
+      document.getElementById('paidAmount').value = '0';
+      document.getElementById('itemsContainer').innerHTML = '';
+      addItemRow();
+      calculateTotal();
+
+      renderRecords();
+      alert("Customer entry safalta se save ho gayi!");
+    }
+
+    function renderRecords() {
+      const recordsList = document.getElementById('recordsList');
+      const records = JSON.parse(localStorage.getItem('naziz_khata_records') || '[]');
+
+      if (records.length === 0) {
+        recordsList.innerHTML = "<p style='color:#64748b; font-size:14px;'>Abhi koi entry nahi hai.</p>";
+        return;
+      }
+
+      recordsList.innerHTML = records.map(rec => {
+        // WhatsApp message structure
+        let waText = `*N.Aziz - Kapda Bill Receipt*%0A`;
+        waText += `*Customer:* ${rec.name}%0A`;
+        waText += `*Tariq:* ${rec.date}%0A----------------------------%0A`;
+        rec.kapde.forEach((k, i) => {
+          waText += `${i+1}. ${k.name} - ₹${k.price}%0A`;
+        });
+        waText += `----------------------------%0A`;
+        waText += `*Kul Total:* ₹${rec.total}%0A`;
+        waText += `*Diya Gaya (Paid):* ₹${rec.paid}%0A`;
+        waText += `*Baki (Balance):* ₹${rec.balance}%0A%0A`;
+        waText += `Dukan par aane ke liye shukriya!`;
+
+        const waLink = rec.phone 
+          ? `https://wa.me/91${rec.phone}?text=${waText}` 
+          : `https://wa.me/?text=${waText}`;
+
+        return `
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <strong>${rec.name}</strong> 
+                <div style="font-size:12px; color:#64748b;">${rec.date} ${rec.phone ? '| 📞 ' + rec.phone : ''}</div>
+              </div>
+              <button class="btn btn-delete" onclick="deleteRecord(${rec.id})">Delete</button>
+            </div>
+
+            <div class="summary-row"><span>Kul Total:</span> <strong>₹${rec.total}</strong></div>
+            <div class="summary-row"><span>Jama Raqam:</span> <span style="color:var(--success);">₹${rec.paid}</span></div>
+            <div class="summary-row"><span>Baki Raqam:</span> <span class="badge-baki">₹${rec.balance}</span></div>
+
+            <div class="items-grid">
+              ${rec.kapde.map(item => `
+                <div class="thumb-card">
+                  ${item.image ? `<img src="${item.image}" alt="kapda">` : `<div style="height:90px; display:flex; align-items:center; justify-content:center; background:#e2e8f0; border-radius:6px; font-size:11px; color:#64748b;">Photo Nahi Hai</div>`}
+                  <div style="font-size:13px; font-weight:600; margin-top:4px;">${item.name}</div>
+                  <div style="font-size:12px; color:#1e3a8a;">₹${item.price}</div>
+                </div>
+              `).join('')}
+            </div>
+
+            <a href="${waLink}" target="_blank" class="btn btn-whatsapp">
+              📱 WhatsApp Par Bill Bhejein
+            </a>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function deleteRecord(id) {
+      if (confirm("Kya aap sach me ye record hatana chahte hain?")) {
+        let records = JSON.parse(localStorage.getItem('naziz_khata_records') || '[]');
+        records = records.filter(item => item.id !== id);
+        localStorage.setItem('naziz_khata_records', JSON.stringify(records));
+        renderRecords();
+      }
+    }
+  </script>
+</body>
+                                 </html>
+                                 
